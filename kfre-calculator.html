@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Riesgo Renal KFRE - Firialta (finerenona)</title>
+    <link rel="stylesheet" href="FirialtaStyle.css">
+    <style>
+        /* Modern Apple-inspired design */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #1d1d1f;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: none;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logos {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .logo img {
+            max-height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-image {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary), #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-section .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #6e6e73;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .section {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .section h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+            border: none;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        /* Calculator specific styles */
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(255, 0, 32, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, var(--color-primary), #ff4757);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 0, 32, 0.3);
+        }
+
+        .calculate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 0, 32, 0.05), rgba(255, 188, 33, 0.05));
+            border: 1px solid rgba(255, 0, 32, 0.1);
+            border-radius: 16px;
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .risk-display {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .risk-percentage {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0.5rem 0;
+        }
+
+        .risk-label {
+            font-size: 1.2rem;
+            color: #6e6e73;
+            margin-bottom: 1rem;
+        }
+
+        .risk-interpretation {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .risk-level {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .risk-low {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .risk-moderate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .risk-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .recommendations {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .recommendations h4 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendations li:last-child {
+            border-bottom: none;
+        }
+
+        .optional-section {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 2px dashed #e1e5e9;
+        }
+
+        .toggle-optional {
+            background: none;
+            border: none;
+            color: var(--color-primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 1rem;
+        }
+
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 0.5rem;
+            cursor: help;
+        }
+
+        .info-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1d1d1f, #2d2d30);
+            color: #f5f5f7;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .footer p {
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .logos {
+                justify-content: center;
+                gap: 2rem;
+            }
+            
+            .product-image {
+                max-width: 140px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+                margin: 2rem 0;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                max-height: 35px;
+            }
+            
+            .product-image {
+                max-width: 120px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.1rem;
+            }
+            
+            .section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #e6001c, #e6a91e);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logos">
+                    <div class="logo">
+                        <img src="Assets/FirialtaLogo.png" alt="Logo de Firialta">
+                    </div>
+                    <div class="logo">
+                        <img src="Assets/Bayer Icon.png" alt="Logo de Bayer">
+                    </div>
+                </div>
+                <div class="product-showcase">
+                    <img src="Assets/FirialtaFamily.png" alt="Caja de Firialta 10 mg" class="product-image">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <h1>Calculadora de Riesgo Renal KFRE</h1>
+            <p class="lead">
+                Herramienta basada en la Ecuación de Riesgo de Falla Renal (KFRE) para profesionales de la salud
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Acerca de la Calculadora KFRE</h2>
+            <p>La Ecuación de Riesgo de Falla Renal (KFRE) es una herramienta validada internacionalmente que predice la probabilidad de progresión a falla renal que requiere diálisis o trasplante en pacientes con enfermedad renal crónica (ERC) estadios 3-5.</p>
+            
+            <div style="background: rgba(255, 0, 32, 0.05); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+                <h3 style="color: var(--color-primary); margin-top: 0;">Importancia Clínica</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;">• Facilita la comunicación médico-paciente sobre el pronóstico renal</li>
+                    <li style="padding: 0.5rem 0;">• Ayuda en la toma de decisiones sobre derivación a nefrología</li>
+                    <li style="padding: 0.5rem 0;">• Orienta el momento óptimo para preparación de terapia de reemplazo renal</li>
+                    <li style="padding: 0.5rem 0;">• Apoya la planificación de trasplante renal preventivo</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="calculator-container">
+                <h2>Calculadora KFRE</h2>
+                <p style="color: #6e6e73; margin-bottom: 2rem;">Complete los siguientes campos para calcular el riesgo de falla renal a 2 y 5 años:</p>
+                
+                <form id="kfre-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Edad (años) <span class="info-tooltip">ℹ️<span class="tooltip-text">Edad del paciente en años completos</span></span></label>
+                            <input type="number" id="age" name="age" min="18" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Sexo</label>
+                            <select id="sex" name="sex" required>
+                                <option value="">Seleccionar</option>
+                                <option value="male">Masculino</option>
+                                <option value="female">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="region">Región</label>
+                            <select id="region" name="region" required>
+                                <option value="">Seleccionar</option>
+                                <option value="north-america">Norteamérica</option>
+                                <option value="non-north-america">Fuera de Norteamérica</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gfr">TFG (mL/min/1.73m²) <span class="info-tooltip">ℹ️<span class="tooltip-text">Tasa de Filtración Glomerular estimada. Debe estar entre 15-59 mL/min/1.73m² para ERC estadios 3-5</span></span></label>
+                            <input type="number" id="gfr" name="gfr" min="15" max="59" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="acr">Relación Albúmina:Creatinina en orina <span class="info-tooltip">ℹ️<span class="tooltip-text">Relación albúmina-creatinina en muestra de orina. Valores normales < 30 mg/g</span></span></label>
+                        <div class="form-row">
+                            <input type="number" id="acr" name="acr" min="0" step="0.1" required placeholder="Valor">
+                            <select id="acr-units" name="acr-units" required>
+                                <option value="mg/g">mg/g</option>
+                                <option value="mg/mmol">mg/mmol</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="optional-section">
+                        <button type="button" class="toggle-optional" onclick="toggleOptionalFields()">
+                            + Campos opcionales para mayor precisión
+                        </button>
+                        <div id="optional-fields" style="display: none; margin-top: 1rem;">
+                            <p style="color: #6e6e73; font-size: 0.9rem; margin-bottom: 1rem;">
+                                Los siguientes campos son opcionales pero proporcionan resultados más precisos:
+                            </p>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="albumin">Albúmina sérica <span class="info-tooltip">ℹ️<span class="tooltip-text">Nivel de albúmina en sangre. Valores normales: 3.5-5.0 g/dL</span></span></label>
+                                    <div class="form-row">
+                                        <input type="number" id="albumin" name="albumin" min="0" step="0.1" placeholder="Valor">
+                                        <select id="albumin-units" name="albumin-units">
+                                            <option value="g/dL">g/dL</option>
+                                            <option value="g/L">g/L</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phosphorus">Fósforo sérico <span class="info-tooltip">ℹ️<span class="tooltip-text">Nivel de fósforo en sangre. Valores normales: 2.5-4.5 mg/dL</span></span></label>
+                                    <div class="form-row">
+                                        <input type="number" id="phosphorus" name="phosphorus" min="0" step="0.1" placeholder="Valor">
+                                        <select id="phosphorus-units" name="phosphorus-units">
+                                            <option value="mg/dL">mg/dL</option>
+                                            <option value="mmol/L">mmol/L</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bicarbonate">Bicarbonato sérico <span class="info-tooltip">ℹ️<span class="tooltip-text">Nivel de bicarbonato en sangre. Valores normales: 22-28 mEq/L</span></span></label>
+                                    <div class="form-row">
+                                        <input type="number" id="bicarbonate" name="bicarbonate" min="0" step="0.1" placeholder="Valor">
+                                        <select id="bicarbonate-units" name="bicarbonate-units">
+                                            <option value="mEq/L">mEq/L</option>
+                                            <option value="mmol/L">mmol/L</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calcium">Calcio corregido <span class="info-tooltip">ℹ️<span class="tooltip-text">Nivel de calcio corregido por albúmina. Valores normales: 8.5-10.5 mg/dL</span></span></label>
+                                    <div class="form-row">
+                                        <input type="number" id="calcium" name="calcium" min="0" step="0.1" placeholder="Valor">
+                                        <select id="calcium-units" name="calcium-units">
+                                            <option value="mg/dL">mg/dL</option>
+                                            <option value="mmol/L">mmol/L</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="calculate-btn">Calcular Riesgo de Falla Renal</button>
+                </form>
+
+                <div id="results" class="results-container">
+                    <h3 style="text-align: center; color: var(--color-primary); margin-bottom: 2rem;">Resultados del Cálculo KFRE</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div class="risk-display">
+                            <div class="risk-label">Riesgo a 2 años</div>
+                            <div class="risk-percentage" id="risk-2-year">--</div>
+                            <div style="font-size: 0.9rem; color: #6e6e73;">de progresión a falla renal</div>
+                        </div>
+                        <div class="risk-display">
+                            <div class="risk-label">Riesgo a 5 años</div>
+                            <div class="risk-percentage" id="risk-5-year">--</div>
+                            <div style="font-size: 0.9rem; color: #6e6e73;">de progresión a falla renal</div>
+                        </div>
+                    </div>
+
+                    <div class="risk-interpretation">
+                        <h4>Interpretación del Riesgo</h4>
+                        <div id="risk-category"></div>
+                        <div id="risk-description"></div>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4>Recomendaciones Clínicas</h4>
+                        <div id="clinical-recommendations"></div>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                        <h4 style="color: var(--color-primary);">Consideraciones sobre Firialta® (finerenona)</h4>
+                        <p style="margin: 0; color: #6e6e73; line-height: 1.6;">
+                            En pacientes con ERC y diabetes tipo 2, Firialta® ha demostrado reducir el riesgo de progresión renal en un 18% y eventos cardiovasculares en un 13%. 
+                            Considere la evaluación de este tratamiento como parte del manejo integral del paciente con nefropatía diabética.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Información Importante</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: var(--color-primary); margin-top: 0;">Validación</h4>
+                    <p style="margin: 0; color: #6e6e73;">La ecuación KFRE ha sido validada en más de 700,000 individuos en más de 30 países, siendo la herramienta más precisa para predecir falla renal.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: var(--color-primary); margin-top: 0;">Aplicabilidad</h4>
+                    <p style="margin: 0; color: #6e6e73;">Diseñada específicamente para pacientes con ERC estadios 3-5 (TFG 15-59 mL/min/1.73m²) derivados a nefrología.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: var(--color-primary); margin-top: 0;">Limitaciones</h4>
+                    <p style="margin: 0; color: #6e6e73;">Los riesgos predichos pueden diferir de los observados en poblaciones con riesgos basales diferentes a la población de estudio.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>Calculadora KFRE - Firialta® (finerenona)</strong> - Bayer S.A.</p>
+            <p>Esta herramienta está dirigida exclusivamente a profesionales de la salud.</p>
+            <p>Los resultados deben interpretarse en el contexto clínico del paciente.</p>
+            <p>© 2024 Bayer. Todos los derechos reservados.</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem;">
+                Material promocional para uso exclusivo de profesionales de la salud en Colombia.
+                <br>Consulte siempre la información completa de prescripción antes de prescribir.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // KFRE Calculation Functions
+        function toggleOptionalFields() {
+            const optionalFields = document.getElementById('optional-fields');
+            const toggleButton = document.querySelector('.toggle-optional');
+            
+            if (optionalFields.style.display === 'none') {
+                optionalFields.style.display = 'block';
+                toggleButton.textContent = '- Ocultar campos opcionales';
+            } else {
+                optionalFields.style.display = 'none';
+                toggleButton.textContent = '+ Campos opcionales para mayor precisión';
+            }
+        }
+
+        function calculateKFRE(data) {
+            // KFRE 4-variable equation coefficients
+            const coefficients = {
+                age: 0.2201,
+                male: -0.2467,
+                gfr: -0.5567,
+                acr: 0.4510
+            };
+
+            // KFRE 8-variable equation coefficients (when optional fields are provided)
+            const extendedCoefficients = {
+                age: 0.2201,
+                male: -0.2467,
+                gfr: -0.5567,
+                acr: 0.4510,
+                albumin: -0.3364,
+                phosphorus: 0.1753,
+                bicarbonate: -0.0923,
+                calcium: -0.2201
+            };
+
+            // Convert units if necessary
+            let acrValue = data.acr;
+            if (data.acrUnits === 'mg/mmol') {
+                acrValue = acrValue * 8.84; // Convert mg/mmol to mg/g
+            }
+
+            // Normalize values for calculation
+            const normalizedData = {
+                age: data.age / 10, // Age in decades
+                male: data.sex === 'male' ? 1 : 0,
+                gfr: data.gfr / 5, // GFR normalized
+                acr: Math.log(Math.max(acrValue, 0.1)) / Math.log(10), // Log10 of ACR
+                albumin: data.albumin ? (data.albumin - 3.5) / 0.5 : null,
+                phosphorus: data.phosphorus ? (data.phosphorus - 3.5) / 0.5 : null,
+                bicarbonate: data.bicarbonate ? (data.bicarbonate - 25) / 5 : null,
+                calcium: data.calcium ? (data.calcium - 9.5) / 0.5 : null
+            };
+
+            // Determine which equation to use
+            const hasOptionalData = data.albumin && data.phosphorus && data.bicarbonate && data.calcium;
+            const coeff = hasOptionalData ? extendedCoefficients : coefficients;
+
+            // Calculate linear predictor
+            let linearPredictor = 0;
+            linearPredictor += coeff.age * normalizedData.age;
+            linearPredictor += coeff.male * normalizedData.male;
+            linearPredictor += coeff.gfr * normalizedData.gfr;
+            linearPredictor += coeff.acr * normalizedData.acr;
+
+            if (hasOptionalData) {
+                linearPredictor += coeff.albumin * normalizedData.albumin;
+                linearPredictor += coeff.phosphorus * normalizedData.phosphorus;
+                linearPredictor += coeff.bicarbonate * normalizedData.bicarbonate;
+                linearPredictor += coeff.calcium * normalizedData.calcium;
+            }
+
+            // Apply calibration factor for non-North American populations
+            if (data.region === 'non-north-america') {
+                linearPredictor += 0.2; // Calibration factor
+            }
+
+            // Calculate 2-year and 5-year risks
+            const risk2Year = (1 - Math.pow(0.9832, Math.exp(linearPredictor))) * 100;
+            const risk5Year = (1 - Math.pow(0.9365, Math.exp(linearPredictor))) * 100;
+
+            return {
+                risk2Year: Math.max(0, Math.min(100, risk2Year)),
+                risk5Year: Math.max(0, Math.min(100, risk5Year))
+            };
+        }
+
+        function getRiskCategory(risk5Year) {
+            if (risk5Year < 5) {
+                return { level: 'low', label: 'Bajo', class: 'risk-low' };
+            } else if (risk5Year < 15) {
+                return { level: 'moderate', label: 'Moderado', class: 'risk-moderate' };
+            } else {
+                return { level: 'high', label: 'Alto', class: 'risk-high' };
+            }
+        }
+
+        function getRecommendations(risk2Year, risk5Year) {
+            const recommendations = [];
+            
+            if (risk5Year < 5) {
+                recommendations.push('Seguimiento rutinario con médico de atención primaria');
+                recommendations.push('Control anual de función renal y proteinuria');
+                recommendations.push('Optimización del control de diabetes e hipertensión');
+            } else if (risk5Year < 15) {
+                recommendations.push('Considerar derivación a nefrología para evaluación');
+                recommendations.push('Intensificar control de factores de riesgo cardiovascular');
+                recommendations.push('Educación al paciente sobre enfermedad renal crónica');
+                recommendations.push('Monitoreo cada 6 meses de función renal');
+            } else {
+                recommendations.push('Derivación urgente a nefrología');
+                recommendations.push('Planificación de acceso vascular para diálisis');
+                recommendations.push('Evaluación para trasplante renal preventivo');
+                recommendations.push('Manejo multidisciplinario (nefrólogo, nutricionista, farmacéutico)');
+            }
+
+            if (risk2Year > 10) {
+                recommendations.push('Considerar preparación inmediata para terapia de reemplazo renal');
+            }
+
+            return recommendations;
+        }
+
+        function displayResults(results, inputData) {
+            const resultsContainer = document.getElementById('results');
+            const risk2YearElement = document.getElementById('risk-2-year');
+            const risk5YearElement = document.getElementById('risk-5-year');
+            const riskCategoryElement = document.getElementById('risk-category');
+            const riskDescriptionElement = document.getElementById('risk-description');
+            const recommendationsElement = document.getElementById('clinical-recommendations');
+
+            // Display risk percentages
+            risk2YearElement.textContent = results.risk2Year.toFixed(1) + '%';
+            risk5YearElement.textContent = results.risk5Year.toFixed(1) + '%';
+
+            // Display risk category
+            const category = getRiskCategory(results.risk5Year);
+            riskCategoryElement.innerHTML = `<span class="risk-level ${category.class}">Riesgo ${category.label}</span>`;
+
+            // Display risk description
+            let description = '';
+            if (category.level === 'low') {
+                description = 'El paciente tiene un riesgo bajo de progresión a falla renal. Se recomienda seguimiento rutinario y control óptimo de factores de riesgo.';
+            } else if (category.level === 'moderate') {
+                description = 'El paciente tiene un riesgo moderado de progresión a falla renal. Se recomienda evaluación nefrológica y manejo especializado.';
+            } else {
+                description = 'El paciente tiene un riesgo alto de progresión a falla renal. Se requiere manejo nefrológico urgente y preparación para terapia de reemplazo renal.';
+            }
+            riskDescriptionElement.textContent = description;
+
+            // Display recommendations
+            const recommendations = getRecommendations(results.risk2Year, results.risk5Year);
+            const recommendationsList = recommendations.map(rec => `<li>• ${rec}</li>`).join('');
+            recommendationsElement.innerHTML = `<ul style="list-style: none; padding: 0; margin: 0;">${recommendationsList}</ul>`;
+
+            // Show results container
+            resultsContainer.classList.add('show');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Form submission handler
+        document.getElementById('kfre-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                age: parseFloat(formData.get('age')),
+                sex: formData.get('sex'),
+                region: formData.get('region'),
+                gfr: parseFloat(formData.get('gfr')),
+                acr: parseFloat(formData.get('acr')),
+                acrUnits: formData.get('acr-units'),
+                albumin: formData.get('albumin') ? parseFloat(formData.get('albumin')) : null,
+                phosphorus: formData.get('phosphorus') ? parseFloat(formData.get('phosphorus')) : null,
+                bicarbonate: formData.get('bicarbonate') ? parseFloat(formData.get('bicarbonate')) : null,
+                calcium: formData.get('calcium') ? parseFloat(formData.get('calcium')) : null
+            };
+
+            // Validate required fields
+            if (!data.age || !data.sex || !data.region || !data.gfr || !data.acr) {
+                alert('Por favor complete todos los campos obligatorios.');
+                return;
+            }
+
+            // Validate GFR range
+            if (data.gfr < 15 || data.gfr > 59) {
+                alert('La TFG debe estar entre 15 y 59 mL/min/1.73m² para usar la ecuación KFRE.');
+                return;
+            }
+
+            try {
+                const results = calculateKFRE(data);
+                displayResults(results, data);
+            } catch (error) {
+                console.error('Error calculating KFRE:', error);
+                alert('Error en el cálculo. Por favor verifique los datos ingresados.');
+            }
+        });
+
+        // Add CSS variables for colors
+        document.documentElement.style.setProperty('--color-primary', '#FF0020');
+        document.documentElement.style.setProperty('--color-secondary', '#FFBC21');
+
+    </script>
+
+    <!-- New mGA Chatbot Integration -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>
+      window.mgaChatbotConfig = {
+        baseUrl: window.location.protocol === 'https:' 
+          ? window.location.origin + window.location.pathname 
+          : "https://localhost:3000" + window.location.pathname, // Ensure HTTPS for Azure AD
+        assistantId: "b65ac005-6fdc-4d85-846a-52b026c158f6", // Your assistant ID you would like to use in chatbot
+        dynamicScript: true
+      };
+    </script>
+    <script src="https://chat.int.bayer.com/embed.min.js" defer></script>
+</body>
+</html>

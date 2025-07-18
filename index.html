@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firialta (finerenona) - Información para Profesionales de la Salud</title>
+    <link rel="stylesheet" href="FirialtaStyle.css">
+    <style>
+        /* Modern Apple-inspired design */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #1d1d1f;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: none;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logos {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .logo img {
+            max-height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-image {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary), #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-section .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #6e6e73;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .section {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .section h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+            border: none;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+        
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        
+        .bullet-list li {
+            position: relative;
+            padding: 0.8rem 0 0.8rem 2rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .bullet-list li:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-left-color: var(--color-primary);
+            transform: translateX(5px);
+        }
+        
+        .bullet-list li::before {
+            content: "●";
+            color: var(--color-primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0.8rem;
+            top: 0.8rem;
+            font-size: 0.8rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 188, 33, 0.1), rgba(255, 0, 32, 0.05));
+            border: 1px solid rgba(255, 188, 33, 0.2);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 0, 32, 0.2);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .card-content {
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .info-section {
+            background: linear-gradient(135deg, rgba(255, 0, 32, 0.05), rgba(255, 188, 33, 0.05));
+            border: 1px solid rgba(255, 0, 32, 0.1);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 16px;
+        }
+        
+        .info-section h3 {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1d1d1f, #2d2d30);
+            color: #f5f5f7;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .footer p {
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .logos {
+                justify-content: center;
+                gap: 2rem;
+            }
+            
+            .product-image {
+                max-width: 140px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+                margin: 2rem 0;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo img {
+                max-height: 35px;
+            }
+            
+            .product-image {
+                max-width: 120px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.1rem;
+            }
+            
+            .section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #e6001c, #e6a91e);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logos">
+                    <div class="logo">
+                        <img src="Assets/FirialtaLogo.png" alt="Logo de Firialta">
+                    </div>
+                    <div class="logo">
+                        <img src="Assets/Bayer Icon.png" alt="Logo de Bayer">
+                    </div>
+                </div>
+                <div class="product-showcase">
+                    <img src="Assets/FirialtaFamily.png" alt="Caja de Firialta 10 mg" class="product-image">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <h1>Firialta® (finerenona)</h1>
+            <p class="lead" style="font-size: 1.2rem; color: var(--color-neutral-dark); margin: 1rem 0;">
+                Una nueva opción terapéutica para pacientes con enfermedad renal crónica y diabetes tipo 2
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Introducción</h2>
+            <p>La enfermedad renal crónica (ERC) asociada a diabetes tipo 2 representa un desafío clínico significativo en Colombia y el mundo. Los datos epidemiológicos revelan la magnitud de este problema de salud pública:</p>
+            <ul class="bullet-list">
+                <li><strong>2 de cada 5 pacientes con diabetes tipo 2 desarrollan ERC</strong></li>
+                <li><strong>Riesgo cardiovascular 3 veces mayor en pacientes con ERC</strong></li>
+                <li><strong>La ERC diabética es la principal causa de enfermedad renal terminal</strong></li>
+                <li><strong>Progresión acelerada hacia diálisis sin tratamiento adecuado</strong></li>
+                <li><strong>Impacto significativo en la calidad de vida y costos del sistema de salud</strong></li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>¿Qué es Firialta?</h2>
+            <div class="highlight-box">
+                <p><strong>Firialta® (finerenona)</strong> es un antagonista selectivo y no esteroideo del receptor de mineralocorticoides (ARM), específicamente desarrollado para el tratamiento de pacientes con enfermedad renal crónica asociada a diabetes tipo 2.</p>
+            </div>
+            <p>A diferencia de otros antagonistas de mineralocorticoides tradicionales, finerenona ha sido diseñada con una selectividad optimizada que permite un mejor perfil de seguridad y eficacia en el contexto de la nefropatía diabética.</p>
+            <div class="two-column">
+                <div>
+                    <h3>Características principales:</h3>
+                    <ul class="bullet-list">
+                        <li>Antagonista selectivo del receptor de mineralocorticoides</li>
+                        <li>Estructura no esteroidal</li>
+                        <li>Administración oral una vez al día</li>
+                        <li>Dosificación de 10 mg y 20 mg</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Indicación:</h3>
+                    <p>Tratamiento de la enfermedad renal crónica asociada a diabetes tipo 2 en adultos, para reducir el riesgo de progresión renal sostenida, muerte cardiovascular, infarto de miocardio no fatal y hospitalización por insuficiencia cardíaca.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Mecanismo de acción</h2>
+            <p>Finerenona actúa bloqueando selectivamente los receptores de mineralocorticoides, interrumpiendo las vías patológicas clave en la progresión de la enfermedad renal crónica:</p>
+            
+            <div class="info-section">
+                <h3>Bloqueo del receptor de mineralocorticoides</h3>
+                <p>La activación excesiva del sistema renina-angiotensina-aldosterona contribuye significativamente al daño renal y cardiovascular en pacientes diabéticos.</p>
+            </div>
+            
+            <div class="two-column">
+                <div class="card">
+                    <div class="card-title">Reducción de la inflamación</div>
+                    <div class="card-content">
+                        <p>Disminuye la activación de vías inflamatorias mediadas por mineralocorticoides, reduciendo el daño tisular renal.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Prevención de la fibrosis</div>
+                    <div class="card-content">
+                        <p>Inhibe los procesos fibróticos que llevan a la esclerosis glomerular y la fibrosis tubulointersticial.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Resultado:</strong> Protección renal integral que va más allá del control de la presión arterial, abordando directamente los mecanismos fisiopatológicos subyacentes.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Evidencia clínica</h2>
+            <p>La eficacia de finerenona ha sido demostrada en estudios clínicos robustos que incluyen miles de pacientes con ERC y diabetes tipo 2:</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-title">Estudio FIDELIO-DKD</div>
+                    <div class="card-content">
+                        <ul class="bullet-list">
+                            <li><strong>Reducción del 18% en la progresión renal</strong></li>
+                            <li>Disminución significativa del riesgo de muerte renal</li>
+                            <li>Reducción sostenida de la TFGe ≥40%</li>
+                            <li>Menor necesidad de terapia de reemplazo renal</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Estudio FIGARO-DKD</div>
+                    <div class="card-content">
+                        <ul class="bullet-list">
+                            <li><strong>Reducción del 13% en eventos cardiovasculares</strong></li>
+                            <li>Menor incidencia de muerte cardiovascular</li>
+                            <li>Reducción de hospitalizaciones por insuficiencia cardíaca</li>
+                            <li>Disminución del riesgo de infarto de miocardio no fatal</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Análisis combinado</div>
+                    <div class="card-content">
+                        <ul class="bullet-list">
+                            <li><strong>Beneficio consistente en diferentes poblaciones</strong></li>
+                            <li>Eficacia independiente del estadio de ERC</li>
+                            <li>Beneficio adicional al tratamiento estándar</li>
+                            <li>Perfil de seguridad favorable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Seguridad</h2>
+            <p>El perfil de seguridad de finerenona ha sido evaluado extensamente en estudios clínicos controlados:</p>
+            
+            <div class="highlight-box">
+                <h3>Consideración principal: Hiperpotasemia</h3>
+                <p>Como con otros antagonistas del receptor de mineralocorticoides, el principal efecto adverso a monitorear es la hiperpotasemia.</p>
+            </div>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Monitoreo recomendado:</h3>
+                    <ul class="bullet-list">
+                        <li>Niveles de potasio sérico antes del inicio</li>
+                        <li>Control a las 4 semanas del inicio</li>
+                        <li>Monitoreo periódico según criterio clínico</li>
+                        <li>Ajuste de dosis según niveles de potasio</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Contraindicaciones:</h3>
+                    <ul class="bullet-list">
+                        <li>Hiperpotasemia severa (K+ >5.5 mEq/L)</li>
+                        <li>Insuficiencia suprarrenal</li>
+                        <li>Hipersensibilidad conocida al fármaco</li>
+                        <li>Embarazo y lactancia</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Ventajas del perfil de seguridad</h3>
+                <p>Finerenona mostró menor incidencia de hiperpotasemia severa comparado con espironolactona en estudios comparativos, manteniendo la eficacia terapéutica.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Conclusiones</h2>
+            <p>Firialta® (finerenona) representa un avance significativo en el manejo de pacientes con enfermedad renal crónica y diabetes tipo 2:</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-title">Eficacia demostrada</div>
+                    <div class="card-content">
+                        <p>Reducción significativa de la progresión renal y eventos cardiovasculares en estudios clínicos robustos.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Mecanismo innovador</div>
+                    <div class="card-content">
+                        <p>Antagonismo selectivo del receptor de mineralocorticoides con perfil de seguridad optimizado.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Beneficio clínico integral</div>
+                    <div class="card-content">
+                        <p>Protección renal y cardiovascular que complementa el tratamiento estándar actual.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Firialta® ofrece una nueva esperanza terapéutica para mejorar los resultados clínicos y la calidad de vida de pacientes con ERC diabética en Colombia.</strong></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>Firialta® (finerenona)</strong> - Bayer S.A.</p>
+            <p>Este material está dirigido exclusivamente a profesionales de la salud.</p>
+            <p>Para mayor información, consulte la información completa de prescripción.</p>
+            <p>© 2024 Bayer. Todos los derechos reservados.</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem;">
+                Material promocional para uso exclusivo de profesionales de la salud en Colombia.
+                <br>Consulte siempre la información completa de prescripción antes de prescribir.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

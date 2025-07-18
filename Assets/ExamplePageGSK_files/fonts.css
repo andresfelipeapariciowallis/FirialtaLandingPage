@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'GSK thin';
+  font-style: normal;
+  src: url('/nuxtassets/fonts/gsk-thin.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GSK light';
+  font-style: normal;
+  src: url('/nuxtassets/fonts/gsk-light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GSK regular';
+  font-style: normal;
+  src: url('/nuxtassets/fonts/gsk-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GSK bold';
+  font-style: normal;
+  src: url('/nuxtassets/fonts/gsk-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GSK italic';
+  font-style: normal;
+  src: url('/nuxtassets/fonts/gsk-regularitalic.woff') format('woff');
+}
+
+@font-face {
+  font-display: block;
+  font-family: 'icons';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/nuxtassets/fonts/icons.woff?e79pko');
+}
+
+@font-face {
+  font-family: 'GSK';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/nuxtassets/fonts/gsk-light.woff');
+}
+
+@font-face {
+  font-family: 'GSK';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/nuxtassets/fonts/gsk-lightitalic.woff');
+}
+
+@font-face {
+  font-family: 'GSK';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/nuxtassets/fonts/gsk-regular.woff');
+}
+
+@font-face {
+  font-family: 'GSK';
+  font-style: italic;
+  font-weight: 500;
+  src: url('/nuxtassets/fonts/gsk-regularitalic.woff');
+}
+
+@font-face {
+  font-family: 'GSK';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/nuxtassets/fonts/gsk-bold.woff');
+}

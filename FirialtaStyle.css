@@ -1,0 +1,143 @@
+/* Paleta de colores de Firialta (finerenona de Bayer) */
+:root {
+  --color-primary: #FF0020;    /* Rojo Firialta, color principal de la marca */
+  --color-secondary: #FFBC21;  /* Amarillo Firialta, color secundario/acento */
+  --color-neutral-dark: #333333; /* Gris oscuro para texto principal */
+  --color-neutral-light: #fafaf1; /* Gris muy claro de fondo de página */
+  --color-neutral-alt: #fffcea;  /* Fondo claro ligeramente cálido para secciones destacadas */
+}
+
+/* Fuente tipográfica principal (Bayer Sans, con alternativas seguras) */
+body {
+  font-family: "Bayer Sans", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--color-neutral-light);
+  color: var(--color-neutral-dark);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Estilos de encabezados: h1, h2, h3 */
+h1, h2, h3 {
+  font-family: "Bayer Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0.5em 0 0.3em;
+  line-height: 1.2;
+}
+h1 {
+  color: var(--color-primary);   /* h1 en color de marca para énfasis */
+  font-size: 2em;
+  font-weight: 700;
+}
+h2 {
+  color: var(--color-neutral-dark);
+  font-size: 1.5em;
+  font-weight: 600;
+}
+h3 {
+  color: var(--color-neutral-dark);
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+/* Estilos de botones primarios y secundarios */
+.button-primary, .btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.75em 1.5em;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-primary:hover, .btn-primary:hover {
+  background-color: #E6001C; /* color primario ligeramente más oscuro al hover */
+}
+
+.button-secondary, .btn-secondary {
+  background-color: #FFFFFF;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 0.75em 1.5em;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button-secondary:hover, .btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* Estilos de contenedor general de la página */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/* Estilos de secciones informativas médicas (tarjetas, contenedores) */
+.info-section {
+  background-color: var(--color-neutral-alt);
+  padding: 1em;
+  margin: 1em 0;
+  border-left: 4px solid var(--color-primary);  /* Indicador visual con color de marca */
+}
+.info-section h3 {
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-top: 0;
+}
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1em 0;
+}
+.card .card-title {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--color-primary);
+}
+.card .card-content {
+  font-size: 0.95em;
+  color: var(--color-neutral-dark);
+}
+
+/* Sistema de columnas para tarjetas (tres por fila en desktop, una en móvil) */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.card {
+  flex: 1 1 calc(33% - 1em);
+}
+
+/* Estilos responsivos para dispositivos móviles */
+@media (max-width: 768px) {
+  body {
+    padding: 0 1em;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  .cards {
+    flex-direction: column;
+  }
+  .card {
+    flex: 1 1 100%;
+  }
+  .button-primary, .btn-primary,
+  .button-secondary, .btn-secondary {
+    width: 100%;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+}
